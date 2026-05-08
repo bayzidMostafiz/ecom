@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Settings - E-Commerce Admin Dashboard</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans antialiased text-gray-900 dark:text-gray-200 transition-colors duration-300">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-gray-900/50 z-30 hidden md:hidden"></div>
+
+        <!-- Sidebar (Simplified for navigation) -->
+        <aside id="sidebar" class="fixed md:relative z-40 w-72 bg-gray-900 text-gray-300 flex flex-col h-screen transition-transform duration-300 -translate-x-full md:translate-x-0">
+            <div class="h-16 flex items-center px-6 bg-gray-950 border-b border-gray-800">
+                <i class="fa-solid fa-cart-shopping text-blue-500 text-2xl mr-3"></i>
+                <span class="text-white text-xl font-bold tracking-wider">eBazaar Panel</span>
+            </div>
+            <nav class="flex-1 overflow-y-auto sidebar-scroll py-4 px-3 space-y-1">
+                <div>
+                    <button onclick="toggleMenu('dashboard')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center"><i class="fa-solid fa-chart-line w-6 text-center"></i><span class="ml-3 font-medium">Dashboard</span></div>
+                        <i id="dashboard-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="dashboard" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="index.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Overview</a></li>
+                        <li><a href="sales.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Sales</a></li>
+                        <li><a href="revenue.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Revenue</a></li>
+                        <li><a href="recent-orders.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Recent Orders</a></li>
+                        <li><a href="top-products.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Top Products</a></li>
+                        <li><a href="visitors.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Visitors</a></li>
+                    </ul>
+                </div>
+
+                <!-- 2. Products -->
+                <div>
+                    <button onclick="toggleMenu('products')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-box-open w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Products</span>
+                        </div>
+                        <i id="products-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="products" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">All Products</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Add New</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Categories</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Brands</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tags</a></li>
+                        <li><a href="reviews.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Reviews</a></li>
+                        <li><a href="inventory.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Inventory</a></li>
+                        <li><a href="variations.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Variations</a></li>
+                        <li><a href="attributes.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Attributes</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Bulk Upload</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Import/Export</a></li>
+                    </ul>
+                </div>
+
+                <!-- 3. Orders -->
+                <div>
+                    <button onclick="toggleMenu('orders')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bag-shopping w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Orders</span>
+                        </div>
+                        <i id="orders-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="orders" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">All Orders</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Pending</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Processing</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Completed</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Cancelled</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Returned</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Invoices</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tracking</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Shipments</a></li>
+                    </ul>
+                </div>
+
+                <!-- 4. Customers -->
+                <div>
+                    <button onclick="toggleMenu('customers')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-users w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Customers</span>
+                        </div>
+                        <i id="customers-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="customers" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">All Customers</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Details</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Groups</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Reviews</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Wishlists</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- 5. Vendors -->
+                <div>
+                    <button onclick="toggleMenu('vendors')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-store w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Vendors</span>
+                        </div>
+                        <i id="vendors-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="vendors" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">All Vendors</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Requests</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Products</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Withdrawals</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Commissions</a></li>
+                    </ul>
+                </div>
+
+                <!-- 6. Content -->
+                <div>
+                    <button onclick="toggleMenu('content')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-layer-group w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Content</span>
+                        </div>
+                        <i id="content-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="content" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Categories</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Subcategories</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Brands</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Banners</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Sliders</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Pages</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Blogs</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Testimonials</a></li>
+                    </ul>
+                </div>
+
+                <!-- 7. Marketing -->
+                <div>
+                    <button onclick="toggleMenu('marketing')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bullhorn w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Marketing</span>
+                        </div>
+                        <i id="marketing-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="marketing" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Coupons</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Campaigns</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Flash Sales</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Email</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Push Notifications</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">SMS</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Referrals</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Affiliates</a></li>
+                    </ul>
+                </div>
+
+                <!-- 8. Payments -->
+                <div>
+                    <button onclick="toggleMenu('payments')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-credit-card w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Payments</span>
+                        </div>
+                        <i id="payments-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="payments" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Methods</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Transactions</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Refunds</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Wallet</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Payouts</a></li>
+                    </ul>
+                </div>
+
+                <!-- 9. Shipping -->
+                <div>
+                    <button onclick="toggleMenu('shipping')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-truck-fast w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Shipping</span>
+                        </div>
+                        <i id="shipping-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="shipping" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Methods</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Zones</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Charges</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Couriers</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tracking</a></li>
+                    </ul>
+                </div>
+
+                <!-- 10. Inventory -->
+                <div>
+                    <button onclick="toggleMenu('inventory')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-boxes-stacked w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Inventory</span>
+                        </div>
+                        <i id="inventory-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="inventory" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Stock</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Alerts</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Purchases</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Suppliers</a></li>
+                    </ul>
+                </div>
+
+                <!-- 11. Reports -->
+                <div>
+                    <button onclick="toggleMenu('reports')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-chart-pie w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Reports</span>
+                        </div>
+                        <i id="reports-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="reports" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="sales.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Sales</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Products</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Customers</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Taxes</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Profit/Loss</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Abandoned Cart</a></li>
+                    </ul>
+                </div>
+
+                <!-- 12. Users & Roles -->
+                <div>
+                    <button onclick="toggleMenu('users')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-user-shield w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Users & Roles</span>
+                        </div>
+                        <i id="users-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="users" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Admins</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Staff</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Roles</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Logs</a></li>
+                    </ul>
+                </div>
+
+                <!-- 13. Customization -->
+                <div>
+                    <button onclick="toggleMenu('customization')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-paint-roller w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Customization</span>
+                        </div>
+                        <i id="customization-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="customization" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Themes</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Homepage</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Menus</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Footer</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Header</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">SEO</a></li>
+                    </ul>
+                </div>
+
+                <!-- 14. Communication -->
+                <div>
+                    <button onclick="toggleMenu('communication')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-comments w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Communication</span>
+                        </div>
+                        <i id="communication-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="communication" class="submenu ml-9 mt-1 space-y-1 text-sm">
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Chat</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tickets</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Messages</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Subscribers</a></li>
+                    </ul>
+                </div>
+
+                <!-- 15. Settings -->
+                <div>
+                    <button onclick="toggleMenu('settings')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-gear w-6 text-center"></i>
+                            <span class="ml-3 font-medium">Settings</span>
+                        </div>
+                        <i id="settings-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul id="settings" class="submenu ml-9 mt-1 space-y-1 text-sm pb-4">
+                        <li><a href="settings.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">General</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Store</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Currency</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tax</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Language</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Email</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">SMS</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">API</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Security</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col bg-gray-50 dark:bg-gray-900 h-screen overflow-hidden transition-colors duration-300">
+            
+            <!-- Top Header -->
+            <header class="h-16 bg-white dark:bg-gray-800 shadow-sm border-b border-transparent dark:border-gray-700 flex items-center justify-between px-6 z-10 transition-colors duration-300">
+                <div class="flex items-center">
+                <!-- Mobile Hamburger Menu -->
+                <button id="sidebar-toggle" class="md:hidden mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">System Settings</h2>
+                </div>
+                <div class="flex items-center space-x-5 text-gray-500 dark:text-gray-400">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="hover:text-gray-700 dark:hover:text-white focus:outline-none">
+                        <i id="theme-icon" class="fa-solid fa-moon text-xl transition-transform"></i>
+                    </button>
+                    <!-- Notifications -->
+                    <button class="hover:text-gray-700 dark:hover:text-white"><i class="fa-regular fa-bell text-xl"></i></button>
+                    <!-- User Profile -->
+                    <div class="relative">
+                        <button id="user-menu-button" class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold focus:outline-none ring-2 ring-transparent hover:ring-blue-300 transition-all">
+                            A
+                        </button>
+                        <!-- Dropdown -->
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 border border-gray-100 dark:border-gray-700 z-50">
+                            <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                                <p class="text-sm font-semibold text-gray-800 dark:text-white">Admin User</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">admin@ebazaar.com</p>
+                            </div>
+                            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fa-solid fa-user mr-2"></i> Update Profile</a>
+                            <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fa-solid fa-gear mr-2"></i> Settings</a>
+                            <div class="border-t border-gray-100 dark:border-gray-700 mt-1"></div>
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Settings</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        
+                        <!-- Settings Sidebar (Internal) -->
+                        <div class="md:col-span-3 space-y-1">
+                            <button class="w-full text-left px-4 py-3 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-lg font-medium transition-colors border-l-4 border-blue-600 dark:border-blue-500">
+                                <i class="fa-solid fa-store w-5 mr-2"></i> General
+                            </button>
+                            <button class="w-full text-left px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors border-l-4 border-transparent">
+                                <i class="fa-solid fa-credit-card w-5 mr-2"></i> Payment
+                            </button>
+                            <button class="w-full text-left px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors border-l-4 border-transparent">
+                                <i class="fa-solid fa-truck-fast w-5 mr-2"></i> Shipping
+                            </button>
+                            <button class="w-full text-left px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors border-l-4 border-transparent">
+                                <i class="fa-solid fa-envelope w-5 mr-2"></i> Email Settings
+                            </button>
+                            <button class="w-full text-left px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors border-l-4 border-transparent">
+                                <i class="fa-solid fa-shield-halved w-5 mr-2"></i> Security
+                            </button>
+                        </div>
+                        
+                        <!-- Settings Content -->
+                        <div class="md:col-span-9">
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sm:p-8 transition-colors duration-300">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-4 border-b border-gray-100 dark:border-gray-700">General Information</h3>
+                                
+                                <form action="#">
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Store Name</label>
+                                            <input type="text" value="eBazaar Online Store" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Contact Email</label>
+                                                <input type="email" value="support@ebazaar.com" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Contact Phone</label>
+                                                <input type="tel" value="+880 1712-345678" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Default Currency</label>
+                                                <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">
+                                                    <option value="USD">USD ($)</option>
+                                                    <option value="BDT" selected>BDT (৳)</option>
+                                                    <option value="EUR">EUR (€)</option>
+                                                    <option value="GBP">GBP (£)</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Timezone</label>
+                                                <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">
+                                                    <option value="UTC">UTC (Coordinated Universal Time)</option>
+                                                    <option value="Asia/Dhaka" selected>Asia/Dhaka (UTC+6)</option>
+                                                    <option value="EST">America/New_York (EST)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Store Physical Address</label>
+                                            <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none transition-colors">123 E-commerce Street, Tech Valley, Dhaka 1200</textarea>
+                                        </div>
+                                        
+                                        <!-- Toggle Switches -->
+                                        <div class="space-y-4 pt-6 border-t border-gray-100 dark:border-gray-700">
+                                            <h4 class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">System Preferences</h4>
+                                            
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-300">Enable Customer Registration</span>
+                                            </label>
+                                            <br>
+                                            <label class="inline-flex items-center cursor-pointer mt-2">
+                                                <input type="checkbox" value="" class="sr-only peer">
+                                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <span class="ms-3 text-sm font-medium text-gray-700 dark:text-gray-300">Maintenance Mode</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Actions -->
+                                    <div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 flex justify-end space-x-4">
+                                        <button type="submit" class="px-6 py-2 bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition-colors font-medium">Save Settings</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
