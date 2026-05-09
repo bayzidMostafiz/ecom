@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Inventory - E-Commerce Admin Dashboard</title>
+    <title>Product Brands - E-Commerce Admin Dashboard</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,10 +64,10 @@
                         <li><a href="add-product.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Add New</a></li>
                         <li><a href="categories.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Categories</a></li>
                         <li><a href="subcategories.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Subcategories</a></li>
-                        <li><a href="brands.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Brands</a></li>
+                        <li><a href="brands.html" class="block py-1.5 px-3 rounded-md bg-gray-800 text-white">Brands</a></li>
                         <li><a href="tags.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Tags</a></li>
                         <li><a href="reviews.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Reviews</a></li>
-                        <li><a href="inventory.html" class="block py-1.5 px-3 rounded-md bg-gray-800 text-white">Inventory</a></li>
+                        <li><a href="inventory.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Inventory</a></li>
                         <li><a href="variations.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Variations</a></li>
                         <li><a href="attributes.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Attributes</a></li>
                         <li><a href="bulk-upload.html" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Bulk Upload</a></li>
@@ -180,7 +180,7 @@
                 <!-- 8. Payments -->
                 <div>
                     <button onclick="toggleMenu('payments')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
-                        <div class="flex items-center">
+                       <div class="flex items-center">
                             <i class="fa-solid fa-credit-card w-6 text-center"></i>
                             <span class="ml-3 font-medium">Payments</span>
                         </div>
@@ -217,7 +217,7 @@
                 <div>
                     <button onclick="toggleMenu('inventory')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
                         <div class="flex items-center">
-                            <i class="fa-solid fa-boxes-stacked w-6 text-center"></i>
+                            <i class="fa-solid fa-warehouse w-6 text-center"></i>
                             <span class="ml-3 font-medium">Inventory</span>
                         </div>
                         <i id="inventory-icon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
@@ -225,6 +225,7 @@
                     <ul id="inventory" class="submenu ml-9 mt-1 space-y-1 text-sm">
                         <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Stock</a></li>
                         <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Alerts</a></li>
+                        <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Warehouse</a></li>
                         <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Purchases</a></li>
                         <li><a href="#" class="block py-1.5 px-3 rounded-md hover:bg-gray-800 hover:text-white">Suppliers</a></li>
                     </ul>
@@ -332,11 +333,11 @@
             <!-- Top Header -->
             <header class="h-16 bg-white dark:bg-gray-800 shadow-sm border-b border-transparent dark:border-gray-700 flex items-center justify-between px-6 z-10 transition-colors duration-300">
                 <div class="flex items-center">
-                    <!-- Mobile Hamburger Menu -->
-                    <button id="sidebar-toggle" class="md:hidden mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Product Inventory</h2>
+                <!-- Mobile Hamburger Menu -->
+                <button id="sidebar-toggle" class="md:hidden mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Product Brands</h2>
                 </div>
                 <div class="flex items-center space-x-5 text-gray-500 dark:text-gray-400">
                     <button id="theme-toggle" class="hover:text-gray-700 dark:hover:text-white focus:outline-none">
@@ -365,230 +366,203 @@
                 <!-- Header & Actions -->
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Product Inventory</h2>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Track product stock, reorder risks, adjustments, and availability.</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Product Brands</h2>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage the brands associated with your store's products.</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <div class="relative">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                            <input type="text" placeholder="Search inventory" class="w-full sm:w-56 pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
+                            <input type="text" placeholder="Search brands" class="w-full sm:w-56 pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
                         </div>
-                        <select class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm font-medium">
-                            <option selected>All Stock</option>
-                            <option>In Stock</option>
-                            <option>Low Stock</option>
-                            <option>Out of Stock</option>
-                            <option>Reorder Needed</option>
-                        </select>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm flex items-center text-sm font-medium">
-                            <i class="fa-solid fa-boxes-stacked mr-2"></i> Stock Update
-                        </button>
                     </div>
                 </div>
 
-                <!-- Inventory Stat Cards -->
+                <!-- Brand Stat Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Stock Units</h3>
-                            <div class="bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg p-2"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Brands</h3>
+                            <div class="bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg p-2"><i class="fa-solid fa-copyright"></i></div>
                         </div>
-                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">24,680</p>
-                        <p class="text-sm text-green-500 mt-2 flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +8.7% <span class="text-gray-400 ml-1">from last month</span></p>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">84</p>
+                        <p class="text-sm text-green-500 mt-2 flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +5 <span class="text-gray-400 ml-1">this month</span></p>
                     </div>
 
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Inventory Value</h3>
-                            <div class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-lg p-2"><i class="fa-solid fa-sack-dollar"></i></div>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Active Brands</h3>
+                            <div class="bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 rounded-lg p-2"><i class="fa-solid fa-circle-check"></i></div>
                         </div>
-                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">$186,420</p>
-                        <p class="text-sm text-green-500 mt-2 flex items-center"><i class="fa-solid fa-circle-check mr-1"></i> 92.4% <span class="text-gray-400 ml-1">sellable stock</span></p>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">76</p>
+                        <p class="text-sm text-green-500 mt-2 flex items-center"><i class="fa-solid fa-check mr-1"></i> 90.4% <span class="text-gray-400 ml-1">in use</span></p>
                     </div>
 
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Low Stock Items</h3>
-                            <div class="bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-lg p-2"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Top Brand</h3>
+                            <div class="bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-lg p-2"><i class="fa-solid fa-crown"></i></div>
                         </div>
-                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">34</p>
-                        <p class="text-sm text-orange-500 mt-2 flex items-center"><i class="fa-solid fa-clock mr-1"></i> 12 items <span class="text-gray-400 ml-1">need reorder</span></p>
+                        <p class="text-xl font-bold text-gray-800 dark:text-white mt-4 truncate">Samsung</p>
+                        <p class="text-sm text-purple-500 mt-2 flex items-center"><i class="fa-solid fa-box mr-1"></i> 142 <span class="text-gray-400 ml-1">products</span></p>
                     </div>
 
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Out of Stock</h3>
-                            <div class="bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg p-2"><i class="fa-solid fa-box-open"></i></div>
+                            <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Unused Brands</h3>
+                            <div class="bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg p-2"><i class="fa-solid fa-ghost"></i></div>
                         </div>
-                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">9</p>
-                        <p class="text-sm text-red-500 mt-2 flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +3 <span class="text-gray-400 ml-1">since yesterday</span></p>
+                        <p class="text-2xl font-bold text-gray-800 dark:text-white mt-4">8</p>
+                        <p class="text-sm text-orange-500 mt-2 flex items-center"><i class="fa-solid fa-broom mr-1"></i> Requires <span class="text-gray-400 ml-1">cleanup</span></p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
-                    <div class="xl:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 transition-colors duration-300">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Stock Attention Board</h3>
-                            <div class="flex flex-wrap gap-2 text-xs font-medium">
-                                <button class="px-3 py-1.5 rounded-md bg-gray-900 text-white dark:bg-blue-600">All</button>
-                                <button class="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">Low Stock</button>
-                                <button class="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">Out</button>
-                                <button class="px-3 py-1.5 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">Fast Moving</button>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="border border-red-100 dark:border-red-900/40 bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-sm font-semibold text-red-700 dark:text-red-300">Critical</span>
-                                    <i class="fa-solid fa-circle-exclamation text-red-500"></i>
-                                </div>
-                                <p class="text-2xl font-bold text-gray-900 dark:text-white">9</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Items with zero or near-zero stock</p>
-                            </div>
-                            <div class="border border-yellow-100 dark:border-yellow-900/40 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-sm font-semibold text-yellow-700 dark:text-yellow-300">Reorder</span>
-                                    <i class="fa-solid fa-cart-plus text-yellow-500"></i>
-                                </div>
-                                <p class="text-2xl font-bold text-gray-900 dark:text-white">12</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Below reorder level</p>
-                            </div>
-                            <div class="border border-green-100 dark:border-green-900/40 bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="text-sm font-semibold text-green-700 dark:text-green-300">Healthy</span>
-                                    <i class="fa-solid fa-circle-check text-green-500"></i>
-                                </div>
-                                <p class="text-2xl font-bold text-gray-900 dark:text-white">286</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Items ready to sell</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-                                <div>
-                                    <p class="text-sm font-semibold text-gray-800 dark:text-white">Fastest moving item</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Cotton Oversized Tee</p>
-                                </div>
-                                <span class="text-sm font-bold text-blue-600 dark:text-blue-400">986 sold</span>
-                            </div>
-                            <div class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-                                <div>
-                                    <p class="text-sm font-semibold text-gray-800 dark:text-white">Next purchase priority</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Smart Fitness Watch</p>
-                                </div>
-                                <span class="text-sm font-bold text-red-600 dark:text-red-400">9 left</span>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- Add Brand Form -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 transition-colors duration-300">
-                        <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-5">Quick Stock Update</h3>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-5">Add New Brand</h3>
                         <div class="space-y-4">
-                            <input type="text" placeholder="Product SKU" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
-                            <div class="grid grid-cols-2 gap-3">
-                                <input type="number" placeholder="Qty change" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Brand Name</label>
+                                <input type="text" placeholder="e.g. Apple" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Slug</label>
+                                <input type="text" placeholder="e.g. apple" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Brand Logo</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer">
+                                    <div class="space-y-1 text-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
+                                        <div class="flex text-sm text-gray-600 dark:text-gray-400 justify-center">
+                                            <span class="relative rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                                <span>Upload a file</span>
+                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                            </span>
+                                            <p class="pl-1">or drag and drop</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 2MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description (Optional)</label>
+                                <textarea rows="3" placeholder="Brief description about the brand..." class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
                                 <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm">
-                                    <option>Add</option>
-                                    <option>Remove</option>
-                                    <option>Set</option>
+                                    <option value="active">Active</option>
+                                    <option value="draft">Draft</option>
                                 </select>
                             </div>
-                            <textarea rows="3" placeholder="Adjustment note" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"></textarea>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Notify purchasing</span>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" class="sr-only peer" checked>
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                </label>
-                            </div>
-                            <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm font-medium">
-                                Apply Stock Update
+                            <button class="w-full px-4 py-2 mt-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm font-medium">
+                                Save Brand
                             </button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Inventory Table -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 transition-colors duration-300">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-                        <h3 class="text-lg font-bold text-gray-800 dark:text-white">Inventory Watchlist</h3>
-                        <button class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline text-left md:text-right">Export Inventory</button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 dark:text-gray-300 uppercase bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">Product</th>
-                                    <th scope="col" class="px-6 py-3">SKU</th>
-                                    <th scope="col" class="px-6 py-3">Available</th>
-                                    <th scope="col" class="px-6 py-3">Reorder Level</th>
-                                    <th scope="col" class="px-6 py-3">Last Updated</th>
-                                    <th scope="col" class="px-6 py-3">Status</th>
-                                    <th scope="col" class="px-6 py-3 text-right">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Wireless Headphones Pro</td>
-                                    <td class="px-6 py-4">WHP-BLK-128</td>
-                                    <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">42</td>
-                                    <td class="px-6 py-4">30</td>
-                                    <td class="px-6 py-4">Today</td>
-                                    <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 mr-3"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Cotton Oversized Tee</td>
-                                    <td class="px-6 py-4">COT-WHT-L</td>
-                                    <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">146</td>
-                                    <td class="px-6 py-4">60</td>
-                                    <td class="px-6 py-4">Today</td>
-                                    <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 mr-3"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Ceramic Coffee Set</td>
-                                    <td class="px-6 py-4">CCS-BLU-6PC</td>
-                                    <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">18</td>
-                                    <td class="px-6 py-4">25</td>
-                                    <td class="px-6 py-4">Yesterday</td>
-                                    <td class="px-6 py-4"><span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300 text-xs font-medium px-2.5 py-1 rounded-full">Low Stock</span></td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 mr-3"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Smart Fitness Watch</td>
-                                    <td class="px-6 py-4">SFW-GRN-42</td>
-                                    <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">9</td>
-                                    <td class="px-6 py-4">20</td>
-                                    <td class="px-6 py-4">2 days ago</td>
-                                    <td class="px-6 py-4"><span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-300 text-xs font-medium px-2.5 py-1 rounded-full">Critical</span></td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 mr-3"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Hydrating Face Serum</td>
-                                    <td class="px-6 py-4">HFS-30ML</td>
-                                    <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">0</td>
-                                    <td class="px-6 py-4">15</td>
-                                    <td class="px-6 py-4">3 days ago</td>
-                                    <td class="px-6 py-4"><span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-300 text-xs font-medium px-2.5 py-1 rounded-full">Out of Stock</span></td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 mr-3"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Brands Table -->
+                    <div class="xl:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 transition-colors duration-300">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Brand Library</h3>
+                            <div class="flex space-x-2">
+                                <button class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 transition-colors">Bulk Actions</button>
+                                <button class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 transition-colors">Export</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 dark:text-gray-300 uppercase bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                                    <tr>
+                                        <th scope="col" class="p-4 w-4">
+                                            <div class="flex items-center">
+                                                <input id="checkbox-all" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">Brand</th>
+                                        <th scope="col" class="px-6 py-3">Slug</th>
+                                        <th scope="col" class="px-6 py-3">Products</th>
+                                        <th scope="col" class="px-6 py-3">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <td class="p-4"><input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"></td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold border border-gray-200 dark:border-gray-600">
+                                                    <i class="fa-brands fa-apple text-lg"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-900 dark:text-white">Apple</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">apple</td>
+                                        <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">112</td>
+                                        <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button class="text-gray-500 hover:text-red-600 dark:hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <td class="p-4"><input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"></td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold border border-gray-200 dark:border-gray-600">
+                                                    S
+                                                </div>
+                                                <span class="font-medium text-gray-900 dark:text-white">Samsung</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">samsung</td>
+                                        <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">142</td>
+                                        <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button class="text-gray-500 hover:text-red-600 dark:hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <td class="p-4"><input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"></td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold border border-gray-200 dark:border-gray-600">
+                                                    <i class="fa-solid fa-check text-lg"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-900 dark:text-white">Nike</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">nike</td>
+                                        <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">86</td>
+                                        <td class="px-6 py-4"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 text-xs font-medium px-2.5 py-1 rounded-full">Active</span></td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button class="text-gray-500 hover:text-red-600 dark:hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <td class="p-4"><input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"></td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-bold border border-gray-200 dark:border-gray-600">
+                                                    S
+                                                </div>
+                                                <span class="font-medium text-gray-900 dark:text-white">Sony</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">sony</td>
+                                        <td class="px-6 py-4 font-bold text-gray-800 dark:text-gray-200">0</td>
+                                        <td class="px-6 py-4"><span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300 text-xs font-medium px-2.5 py-1 rounded-full">Draft</span></td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button class="text-gray-500 hover:text-green-600 dark:hover:text-green-400 mr-3"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button class="text-gray-500 hover:text-red-600 dark:hover:text-red-400"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
